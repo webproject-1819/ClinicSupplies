@@ -1,0 +1,17 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "description": "json_test_file",
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "ClinicSupplies",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
