@@ -18,4 +18,25 @@ def catalogue(request):
     # rendering the template in HttpResponse
     return HttpResponse(template.render())
 
+def sales(request):
+    # getting our template
+    template = loader.get_template('sales.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
+
+def information(request):
+    # getting our template
+    template = loader.get_template('information.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
+
+def shopping_cart(request):
+    # getting our template
+    template = loader.get_template('shopping_cart.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
+
 

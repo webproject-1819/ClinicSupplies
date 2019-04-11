@@ -25,15 +25,14 @@
         </div>
 
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-collapse w3-large" style="z-index:3;width:250px;font-weight:bold;color:#ffffff!important; background-color:#36C1B2!important" id="mySidebar"><br>
+        <nav class="w3-sidebar w3-collapse w3-large w3-display-bottomleft" style="z-index:3;width:240px;height: 85%;font-weight:bold;overflow:hidden;color:#ffffff!important; background-color:#36C1B2!important" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"></a>
             <div class="w3-container">
-                <h3 class=""style="width: 250px; height: 1px"></h3>
-                <a href= ''><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 250px"><b>Catalogue</b></h3></a>
-                <a href= ''><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 250px"><b>Sales</b></h3></a>
-                <a href= ''><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 250px"><b>Cart</b></h3></a>
-                <a href= ''> <h3 class="w3-padding-16 w3-button w3-left-align"style="width: 250px"><b>Information</b></h3></a>
-                <a href= ''><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 250px"><b>Logout</b></h3></a>
+                <a href= '../catalogue'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Catalogue</b></h3></a>
+                <h3 class="w3-padding-16 w3-button:disabled w3-left-align"style="width: 240px;color: black"><b>Sales</b></h3>
+                <a href= '../shopping_cart'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Cart</b></h3></a>
+                <a href= '../information'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Information</b></h3></a>
+                <a href= '../logout'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Logout</b></h3></a>
             </div>
         </nav>
 
@@ -42,16 +41,8 @@
             <a href="javascript:void(0)" class="w3-button w3-margin-right" onclick="w3_open()">☰</a>
             <span>Clinic Supplies</span>
 
-            <div class="w3-container w3-cell w3-display-topright" style="padding-top: 15px">
-                <h7 class="w3-padding-16"style="text-align: right"><img src="http://cdn.onlinewebfonts.com/svg/img_211158.png" alt="Logout"style="width: 35px; height: 35px"></h7>
-            </div>
-
             <div class="w3-container w3-cell w3-display-topright"style="padding-top:15px; padding-right: 90px">
                 <h7 class="w3-padding-16"style="text-align: right"><img src="http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png" alt="User"style="width: 35px; height: 35px"></h7>
-            </div>
-
-            <div class="w3-container w3-cell w3-display-topright"style="padding-top:15px; padding-right: 164px">
-                <h7 class="w3-padding-16"style="text-align: right"><img src="https://image.flaticon.com/icons/svg/54/54810.svg" alt="Notification"style="width: 35px; height: 35px"></h7>
             </div>
 
         </header>
@@ -60,18 +51,15 @@
         <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
         <!-- !PAGE CONTENT! -->
-        <div class="w3-main" style="margin-left:340px;margin-right:40px">
-            {% block content %}
+        <div class="w3-main" style="margin-left:340px;margin-right:40px;margin-top: 15%">
 
-            {% endblock %}
+            <!-- Header -->
+            <div class="w3-container" id="showcase">
+                <h1 class="w3-jumbo">
 
-        <!-- Header -->
-        <div class="w3-container" style="margin-top:80px" id="showcase">
-            <h1 class="w3-jumbo">
-
-            </h1>
+                </h1>
+            </div>
         </div>
-
         <script>
             // Script to open and close sidebar
             function w3_open() {
@@ -94,6 +82,3 @@
         </script>
     </body>
 </html>
-
-
-<link rel="stylesheet" type="text/css" href="{% static 'gestor-sala-home.html' %}" />
