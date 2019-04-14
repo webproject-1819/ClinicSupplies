@@ -1,49 +1,48 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 # Create your models here.
 
 
-class Product(models.Model):
+class product(models.Model):
 
     reference = models.BigIntegerField(primary_key=True, default=00000000000)
-    preu = models.IntegerField(null=True)
+    preu = models.FloatField(null=True)
     descripcio = models.CharField(max_length=255)
+    image = models.ImageField(upload_to = 'images/', default = 'images/None/no-img.jpg')
 
     def __unicode__(self):
         return u"%s" % self.name
 
 
-class Stock(models.Model):
-    key = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+class stock(models.Model):
+    key = models.ForeignKey(product, on_delete=models.CASCADE, null=True)
     quantitiy = models.IntegerField(null=True)
 
     def available(self):
-        if Stock.objects.filter(Product.reference == self.key) and Stock.quantitiy >= 1:
-            return
+        if stock.objects.filter(product.reference == self.key) and stock.quantitiy >= 1:
+            return True
 
     def __unicode__(self):
         return u"%s" % self.name
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
+class customer(models.Model):
+    nom = models.CharField(max_length=255)
+    adressa_fisica = models.TextField()
+    telefon = models.IntegerField()
+    numero_compte = models.BigIntegerField()
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+class carret(models.Model):
+    client = models.ForeignKey(customer,on_delete=models.CASCADE, null=True)
+    list = models.ForeignKey(product)
+
+    def final_price(self):
+        return self.list.aggregate('preu')
 
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+
+
+
