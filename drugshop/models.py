@@ -4,13 +4,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 
-
 # Create your models here.
 from django.urls import reverse
 
 
 class product(models.Model):
-
     reference = models.BigIntegerField(primary_key=True, default=00000000000)
     preu = models.FloatField(null=True)
     descripcio = models.CharField(max_length=255)
@@ -64,7 +62,7 @@ class product_review(Review):
 
 class customer(models.Model):
     nom = models.CharField(max_length=255)
-    adresa_fisica = models.CharField(max_length=255,default= 'Here')
+    adresa_fisica = models.CharField(max_length=255, default='Here')
     telefon = models.IntegerField()
     numero_compte = models.BigIntegerField()
     user = models.ForeignKey(User, default=1, primary_key=True)

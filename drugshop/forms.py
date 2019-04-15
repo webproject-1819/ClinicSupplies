@@ -8,6 +8,7 @@ class productForm(ModelForm):
         fields = "__all__"
         exclude = ('user',)
 
+
 class stockForm(ModelForm):
     class Meta:
         model = stock
