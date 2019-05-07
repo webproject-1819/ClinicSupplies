@@ -13,7 +13,7 @@ class product(models.Model):
     name = models.CharField(max_length=255,default="")
     preu = models.FloatField(null=True)
     descripcio = models.CharField(max_length=255,null=True)
-
+    cart=models.BooleanField(default=False)
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
 
     def averageRating(self):
