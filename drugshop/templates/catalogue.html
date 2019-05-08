@@ -83,14 +83,21 @@
     <!-- Header -->
     <div class="w3-container" id="showcase">
         <h1 class="w3-jumbo">
-        <h1> Products: </h1>
+
+            <h1> Products: </h1>
             {% block contenido %}
                 <ul>
                     {% for dato in datos %}
-                            <h4>{{ dato.name }}</h4>
+                        <li>
+                            <a href='{% url "producte" dato.reference%}'>{{ dato.name }}</a>
+                            <img src='{{ MEDIA_URL }}{{ dato.imagen }}'>
+                        </li>
+                        <h5>{{ dato.preu }}</h5>
                     {% endfor %}
                 </ul>
             {% endblock %}
+
+
 
 
         </h1>

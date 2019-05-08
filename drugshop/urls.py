@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^sales', sales, name='sales'),
     url(r'^information', information, name='information'),
     url(r'^shopping_cart', shopping_cart, name='shopping cart'),
+    url(r'^producte/(?P<reference>\d+)$', views.receta, name='producte'),
+
 
 ]

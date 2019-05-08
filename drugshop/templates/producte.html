@@ -1,0 +1,31 @@
+{% block titulo %} {{datos.name}} {% endblock %}
+
+
+{% block contenido %}
+	<div id='imatge'>
+		<h2>Imatge</h2>
+		<img src='{{MEDIA_URL}}{{datos.image}}'>
+	</div>
+	<div id='preu'>
+		<h2>Preu</h2>
+		<p>{{datos.preu}}</p>
+	</div>
+    <div id='imatge'>
+		<h2>Descrició</h2>
+		<p>{{datos.descripcio}}</p>
+	</div>
+	<div id='comentarios'>
+		<h2>Comentarios</h2>
+			{% for item in comentarios %}
+				<p>{{item.rating}}</p>
+                <p>{{ item.comment }}</p>
+                <p>{{ item.date }}</p>
+
+			{% empty %}
+				<p>Sin comentarios registrados</p>
+			{% endfor %}
+	</div>
+	<footer>
+	  <p>Registrado {{ product.tiempo_registro|date:'SHORT_DATETIME_FORMAT' }} por {{product.cart}}</p>
+	</footer>
+{% endblock %}

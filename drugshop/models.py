@@ -13,8 +13,9 @@ class product(models.Model):
     name = models.CharField(max_length=255,default="")
     preu = models.FloatField(null=True)
     descripcio = models.CharField(max_length=255,null=True)
-    cart=models.BooleanField(default=False)
+    cart = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
+    tiempo_registro = models.DateTimeField(auto_now=True)
 
     def averageRating(self):
         reviewCount = self.product_review_set.count()
@@ -36,7 +37,7 @@ class stock(models.Model):
     quantitiy = models.IntegerField(null=True)
 
     def __str__(self):
-        return stock.key.name
+        return self.key.name
 
     def available(self):
         if self.quantitiy >= 1:
