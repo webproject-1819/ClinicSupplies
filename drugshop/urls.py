@@ -13,6 +13,4 @@ urlpatterns = [
     url(r'^information/', information, name='information'),
     url(r'^shopping_cart/', shopping_cart, name='shopping cart'),
 
-    path('createProduct/', CreateProduct, name="createProduct"),
-
 ]
