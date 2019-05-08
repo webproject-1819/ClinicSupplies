@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404, redirect, render, render_to_resp
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView
-
 from drugshop.models import *
 
 
