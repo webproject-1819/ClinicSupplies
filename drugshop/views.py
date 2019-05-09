@@ -59,3 +59,15 @@ def receta(request, reference):
     comentarios = Review.objects.filter(product=datos)
     context = {'datos': datos, 'comentarios': comentarios}
     return render(request, 'producte.html', context)
+
+
+def create_prod(request):
+    if request.method == 'POST':
+        form = create_prod(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.save()
+            return redirect('catalogue')
+    else:
+        form = create_prod()
+        return render(request, "form.html", {'form': form})

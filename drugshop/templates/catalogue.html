@@ -1,8 +1,7 @@
 {% extends 'home.html' %}
 
 {% block content %}
-    <h1> Products: </h1>
-    {% block contenido %}
+    <h1>Products:</h1>
         <ul>
             {% for dato in datos %}
                 <li>
@@ -12,5 +11,7 @@
                 <h5>{{ dato.preu }}</h5>
             {% endfor %}
         </ul>
-    {% endblock %}
+
+    <a href= {% url 'create_prod' %}><button class="w3-button w3-circle w3-black w3-display-bottomright"style="position: fixed; width:1.8cm; height:1.8cm; margin-right: 2%; margin-bottom: 2%">+</button></a>
+
 {% endblock %}

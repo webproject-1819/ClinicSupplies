@@ -11,11 +11,11 @@ from django.urls import reverse
 class product(models.Model):
     reference = models.BigIntegerField(primary_key=True, default=00000000000)
     name = models.CharField(max_length=255,default="")
-    preu = models.FloatField(null=True)
-    descripcio = models.CharField(max_length=255,null=True)
+    price = models.FloatField(null=True)
+    description = models.CharField(max_length=255,null=True)
     cart = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
-    tiempo_registro = models.DateTimeField(auto_now=True)
+    register_time = models.DateTimeField(auto_now=True)
 
     def averageRating(self):
         reviewCount = self.product_review_set.count()
