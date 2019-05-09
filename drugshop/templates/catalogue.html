@@ -1,13 +1,16 @@
 {% extends 'home.html' %}
 
-    {% block content %}
-
-        <h1>Products:</h1>
-            <ul>
-                {% for dato in datos %}
-                    <h4>{{ dato.name }}</h4>
-                {% endfor %}
-            </ul>
-        <button class="w3-button w3-circle w3-black w3-display-bottomright"style="position: fixed; width:1.5cm; height:1.5cm; margin-right: 2%; margin-bottom: 2%">+</button></a>
-
+{% block content %}
+    <h1> Products: </h1>
+    {% block contenido %}
+        <ul>
+            {% for dato in datos %}
+                <li>
+                    <a href='{% url "producte" dato.reference %}'>{{ dato.name }}</a>
+                    <img src='{{ MEDIA_URL }}{{ dato.imagen }}'>
+                </li>
+                <h5>{{ dato.preu }}</h5>
+            {% endfor %}
+        </ul>
     {% endblock %}
+{% endblock %}

@@ -53,3 +53,9 @@ def productos(request):
     prod = product.objects.all()
     context = {'datos': prod}
     return render(request, 'catalogue.html', context)
+
+def receta(request, reference):
+    datos = get_object_or_404(product, pk=reference)
+    comentarios = Review.objects.filter(product=datos)
+    context = {'datos': datos, 'comentarios': comentarios}
+    return render(request, 'producte.html', context)
