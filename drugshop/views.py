@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404, redirect, render, render_to_resp
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView
+
+from drugshop.forms import productForm
 from drugshop.models import *
 
 
@@ -54,7 +56,7 @@ def productos(request):
     context = {'datos': prod}
     return render(request, 'catalogue.html', context)
 
-def receta(request, reference):
+def producte_detail(request, reference):
     datos = get_object_or_404(product, pk=reference)
     comentarios = Review.objects.filter(product=datos)
     context = {'datos': datos, 'comentarios': comentarios}
@@ -63,11 +65,11 @@ def receta(request, reference):
 
 def create_prod(request):
     if request.method == 'POST':
-        form = create_prod(request.POST)
+        form = productForm(request.POST, request.FILES)
         if form.is_valid():
-            model_instance = form.save(commit=False)
-            model_instance.save()
-            return redirect('catalogue')
+            form.save()
+            return HttpResponseRedirect('/catalogue')
     else:
-        form = create_prod()
-        return render(request, "form.html", {'form': form})
+        form = productForm()
+        context = {'form': form}
+        return render(request, "product_create.html", context)

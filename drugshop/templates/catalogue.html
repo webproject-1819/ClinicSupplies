@@ -6,9 +6,9 @@
             {% for dato in datos %}
                 <li>
                     <a href='{% url "producte" dato.reference %}'>{{ dato.name }}</a>
-                    <img src='{{ MEDIA_URL }}{{ dato.imagen }}'>
+                    <img src='{{ MEDIA_URL }}{{ dato.image }}'>
                 </li>
-                <h5>{{ dato.preu }}</h5>
+                <h5>{{ dato.price }}</h5>
             {% endfor %}
         </ul>
 

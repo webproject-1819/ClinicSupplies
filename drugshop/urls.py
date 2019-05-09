@@ -9,12 +9,13 @@ urlpatterns = [
 
     url(r'^home/', home, name='home'),
     url(r'^catalogue/', views.productos, name='catalogue'),
-    url(r'^producte/(?P<reference>\d+)$', views.receta, name='producte'),
+    url(r'^producte/(?P<reference>\d+)$', views.producte_detail, name='producte'),
     url(r'^sales/', sales, name='sales'),
     url(r'^information/', information, name='information'),
     url(r'^shopping_cart/', shopping_cart, name='shopping_cart'),
 
-    path('create_prod/', create_prod, name="create_prod"),
+    url(r'^product_create/', views.create_prod, name="product_create"),
+
 
 
 ]
