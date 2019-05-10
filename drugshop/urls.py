@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^shopping_cart/', shopping_cart, name='shopping_cart'),
 
     url(r'^product_create/', views.create_prod, name="product_create"),
+    url(r'^sale_create/', views.create_sale, name="sale_create"),
 
 
 

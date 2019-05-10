@@ -7,7 +7,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView
 
-from drugshop.forms import productForm
+from drugshop.forms import productForm, salesForm
 from drugshop.models import *
 
 
@@ -73,3 +73,15 @@ def create_prod(request):
         form = productForm()
         context = {'form': form}
         return render(request, "product_create.html", context)
+
+
+def create_sale(request):
+    if request.method == 'POST':
+        form = salesForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/sales')
+    else:
+        form = salesForm()
+        context = {'form': form}
+        return render(request, "sale_create.html", context)

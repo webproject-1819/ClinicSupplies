@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from drugshop.models import product, stock
+from drugshop.models import product, stock, sale
 
 class productForm(ModelForm):
     class Meta:
@@ -13,3 +13,9 @@ class stockForm(ModelForm):
         model = stock
         fields = "__all__"
         exclude = ('user',)
+
+class salesForm(ModelForm):
+    class Meta:
+        model = sale
+
+        fields = ('discount',)

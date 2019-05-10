@@ -32,6 +32,13 @@ class product(models.Model):
         return reverse('drugshop:product_detail', kwargs={'pk': self.pk})
 
 
+class sale(product, models.Model):
+    discount = models.FloatField(null=True)
+
+    def newPrice(self):
+        return product.price - (product.price * sale.discount / 100)
+
+
 class stock(models.Model):
     key = models.OneToOneField(product, on_delete=models.CASCADE,default="")
     quantitiy = models.IntegerField(null=True)
@@ -42,7 +49,6 @@ class stock(models.Model):
     def available(self):
         if self.quantitiy >= 1:
             return True
-
 
 
 class Review(models.Model):
