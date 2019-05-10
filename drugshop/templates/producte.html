@@ -1,37 +1,37 @@
 {% extends 'home.html' %}
-{% block content %}
 
-    {% block titulo %}
-        <h1>{{datos.name}}</h1>
-    {% endblock %}
 
-    {% block contenido %}
-        <div id='imatge'>
-            <h3>Imatge</h3>
-            <img src='{{MEDIA_URL}}{{datos.image}}'>
-        </div>
-        <div id='preu'>
-            <h3>Preu</h3>
-            <p>{{datos.price}}€</p>
-        </div>
-        <div id='imatge'>
-            <h3>Descrició</h3>
-            <p>{{datos.description}}</p>
-        </div>
-        <div id='comentarios'>
-            <h3>Comentarios</h3>
-                {% for item in comentarios %}
-                    <p>{{item.rating}}</p>
-                    <p>{{ item.comment }}</p>
-                    <p>{{ item.date }}</p>
+{% block titulo %}
+    <h1>{{ datos.name }}</h1>
+{% endblock %}
 
-                {% empty %}
-                    <p>Sin comentarios registrados</p>
-                {% endfor %}
-        </div>
-        <footer>
-          <p>Registrado {{ product.register_time|date:'SHORT_DATETIME_FORMAT' }} por {{product.cart}}</p>
-        </footer>
-    {% endblock %}
+{% block contenido %}
+    <div id='imatge'>
+        <h2>Imatge</h2>
+        <img src='{{ MEDIA_URL }}{{ datos.image }}'>
+    </div>
+    <div id='preu'>
+        <h2>Preu</h2>
+        <p>{{ datos.price }}</p>
+    </div>
+    <div id='imatge'>
+        <h2>Descrició</h2>
+        <p>{{ datos.description }}</p>
+    </div>
+
+    <div id='comentarios'>
+        <h2>Comentarios</h2>
+        {% for item in comentarios %}
+            <p>{{ item.rating }}</p>
+            <p>{{ item.comment }}</p>
+            <p>{{ item.date }}</p>
+
+        {% empty %}
+            <p>Sin comentarios registrados</p>
+        {% endfor %}
+    </div>
+    <footer>
+        <p>Registrado {{ product.register_time|date:'SHORT_DATETIME_FORMAT' }} por {{ product.cart }}</p>
+    </footer>
 {% endblock %}
 
