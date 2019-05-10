@@ -16,6 +16,7 @@ class product(models.Model):
     cart = models.ForeignKey(User, null=True, on_delete=models.CASCADE, default='')
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
     register_time = models.DateTimeField(auto_now=True)
+    buy = models.BooleanField(default=False)
 
     def averageRating(self):
         reviewCount = self.product_review_set.count()
