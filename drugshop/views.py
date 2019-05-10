@@ -5,7 +5,8 @@ from django.contrib.sites import requests
 from django.shortcuts import get_object_or_404, redirect, render, render_to_response
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, UpdateView
 
 from drugshop.forms import productForm
 from drugshop.models import *
@@ -71,5 +72,27 @@ def create_prod(request):
             return HttpResponseRedirect('/catalogue')
     else:
         form = productForm()
+        context = {'form': form}
+        return render(request, "product_create.html", context)
+
+
+def producte_delete(request, pk):
+    prod = get_object_or_404(product, pk=pk)
+    prod.delete()
+    return HttpResponseRedirect(reverse('catalogue'))
+
+
+def product_edit(request,reference):
+    prod = get_object_or_404(product, reference=reference)
+    if request.method == 'POST':
+        form = productForm(request.POST, instance=prod)
+        if form.is_valid():
+            prod = form.save(commit=False)
+            prod.author = request.user
+            prod.save()
+            return redirect('catalogue')
+    else:
+        form = productForm(instance=prod)
+
         context = {'form': form}
         return render(request, "product_create.html", context)

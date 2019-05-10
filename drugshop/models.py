@@ -10,10 +10,10 @@ from django.urls import reverse
 
 class product(models.Model):
     reference = models.BigIntegerField(primary_key=True, default=00000000000)
-    name = models.CharField(max_length=255,default="")
+    name = models.CharField(max_length=255, default="")
     price = models.FloatField(null=True)
-    description = models.CharField(max_length=255,null=True)
-    cart = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    description = models.CharField(max_length=255, null=True)
+    cart = models.ForeignKey(User, null=True, on_delete=models.CASCADE, default='')
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
     register_time = models.DateTimeField(auto_now=True)
 
@@ -57,5 +57,3 @@ class Review(models.Model):
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name + " " + self.product.name + " " + str(self.date)
 
-class test(models.Model):
-    text=models.TextField(blank=True, null=True)
