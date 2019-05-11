@@ -15,10 +15,10 @@
             <p>{{ datos.price }}</p>
         </div>
         <div id='imatge'>
-            <h2>Descrició</h2>
+            <h2>Descripció</h2>
             <p>{{ datos.description }}</p>
         </div>
-
+        <a href='{% url "review_create" %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">Comment</button></a>
         <div id='comentarios'>
             <h2>Comentarios</h2>
             {% for item in comentarios %}

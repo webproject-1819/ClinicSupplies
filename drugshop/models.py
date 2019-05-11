@@ -9,7 +9,7 @@ from django.urls import reverse
 
 
 class product(models.Model):
-    reference = models.BigIntegerField(primary_key=True, default=00000000000)
+    reference = models.BigIntegerField(primary_key=True, default='')
     name = models.CharField(max_length=255, default="")
     price = models.FloatField(null=True)
     description = models.CharField(max_length=255, null=True)
@@ -17,6 +17,9 @@ class product(models.Model):
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
     register_time = models.DateTimeField(auto_now=True)
     buy = models.BooleanField(default=False)
+
+    def newPrice(self,product):
+        return product.price - (product.price * sale.objects.get(product.reference == sale.product.reference).discount / 100)
 
     def averageRating(self):
         reviewCount = self.product_review_set.count()
@@ -32,14 +35,6 @@ class product(models.Model):
     def get_absolute_url(self):
         return reverse('drugshop:product_detail', kwargs={'pk': self.pk})
 
-
-class sale(product, models.Model):
-    discount = models.FloatField(null=True)
-
-    def newPrice(self):
-        return product.price - (product.price * sale.discount / 100)
-
-
 class stock(models.Model):
     key = models.OneToOneField(product, on_delete=models.CASCADE,default="")
     quantitiy = models.IntegerField(null=True)
@@ -52,7 +47,7 @@ class stock(models.Model):
             return True
 
 
-class Review(models.Model):
+class review(models.Model):
     ''' Review atributes '''
     RATING_CHOICES = ((1, 'one'), (2, 'two'), (3, 'three'), (4, 'four'), (5, 'five'))
     rating = models.PositiveSmallIntegerField('Rating (stars)', blank=False, default=3, choices=RATING_CHOICES)
