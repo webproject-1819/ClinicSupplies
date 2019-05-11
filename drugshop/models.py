@@ -12,14 +12,12 @@ class product(models.Model):
     reference = models.BigIntegerField(primary_key=True, default='')
     name = models.CharField(max_length=255, default="")
     price = models.FloatField(null=True)
+    discount = models.FloatField(null=True, default=0)
     description = models.CharField(max_length=255, null=True)
     cart = models.ForeignKey(User, null=True, on_delete=models.CASCADE, default='')
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg', null=True)
     register_time = models.DateTimeField(auto_now=True)
     buy = models.BooleanField(default=False)
-
-    def newPrice(self,product):
-        return product.price - (product.price * sale.objects.get(product.reference == sale.product.reference).discount / 100)
 
     def averageRating(self):
         reviewCount = self.product_review_set.count()
@@ -34,6 +32,7 @@ class product(models.Model):
 
     def get_absolute_url(self):
         return reverse('drugshop:product_detail', kwargs={'pk': self.pk})
+
 
 class stock(models.Model):
     key = models.OneToOneField(product, on_delete=models.CASCADE,default="")

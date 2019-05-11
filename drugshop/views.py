@@ -25,6 +25,14 @@ def catalogue(request):
     return HttpResponse(template.render())
 
 
+def sales(request):
+    # getting our template
+    template = loader.get_template('sales.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
+
+
 def information(request):
     # getting our template
     template = loader.get_template('information.html')
@@ -115,3 +123,20 @@ def product_edit(request, reference):
 
         context = {'form': form}
         return render(request, "product_create.html", context)
+
+
+def product_offer(request, reference):
+    prod = get_object_or_404(product, reference=reference)
+    if request.method == 'POST':
+        form = productOffer(request.POST, instance=prod)
+        if form.is_valid():
+            prod = form.save(commit=False)
+            prod.author = request.user
+            prod.save()
+            return redirect('catalogue')
+    else:
+        form = productOffer(instance=prod)
+
+        context = {'form': form}
+        return render(request, "sale_create.html", context)
+

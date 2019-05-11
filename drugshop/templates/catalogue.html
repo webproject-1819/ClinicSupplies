@@ -5,17 +5,20 @@
     <h1>Products</h1>
         <ul>
             {% for dato in datos %}
-                <div>
-                    <a href='{% url "producte" dato.reference %}'>{{ dato.name }}</a>
-                </div>
-                <div>
-                    <a href='{% url "producte" dato.reference %}'><img src='{{ MEDIA_URL }}{{ dato.image }}'style="width: 150px; height: 150px"></a>
-                    <h5>{{ dato.price }}€</h5>
-                </div>
-                <div>
-                    <a href='{% url  "product_edit" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">edit</button></a>
-                    <a href='{% url  "product_delete" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">delete</button></a>
-                </div>
+                {% if dato.discount == 0 %}
+                    <div>
+                        <a href='{% url "producte" dato.reference %}'>{{ dato.name }}</a>
+                    </div>
+                    <div>
+                        <a href='{% url "producte" dato.reference %}'><img src='{{ MEDIA_URL }}{{ dato.image }}'style="width: 150px; height: 150px"></a>
+                        <h5>{{ dato.price }}€</h5>
+                    </div>
+                    <div>
+                        <a href='{% url  "product_offer" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">offer</button></a>
+                        <a href='{% url  "product_edit" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">edit</button></a>
+                        <a href='{% url  "product_delete" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">delete</button></a>
+                    </div>
+                {% endif %}
 
             {% endfor %}
         </ul>

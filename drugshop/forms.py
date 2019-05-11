@@ -6,8 +6,16 @@ from drugshop.models import product, stock, review
 class productForm(ModelForm):
     class Meta:
         model = product
-        fields = "__all__"
+        fields = ('reference', 'name', 'price', 'description', 'cart', 'image')
         exclude = ('user',)
+
+
+class productOffer(ModelForm):
+    class Meta:
+        model = product
+        fields = ('discount',)
+        exclude = ('user',)
+
 
 class reviewForm(ModelForm):
     class Meta:
@@ -21,3 +29,4 @@ class stockForm(ModelForm):
         model = stock
         fields = "__all__"
         exclude = ('user',)
+
