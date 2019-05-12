@@ -20,8 +20,11 @@ urlpatterns = [
     url(r'^review_create/', views.create_review, name="review_create"),
     url(r'^product_edit/(?P<reference>[-\w]+)/edit/$', views.product_edit, name='product_edit'),
 
-
-
+    url(r'^usuarios/$', views.usuarios, name='usuarios'),
+    url(r'^usuario/nuevo/$', views.usuario_nuevo, name='usuario_nuevo'),
+    url(r'^ingresar/$', views.ingresar, name='ingresar'),
+    url(r'^privado', views.privado, name='privado'),
+    url(r'^cerrar/$', views.cerrar, name='cerrar'),
 
 
 ]

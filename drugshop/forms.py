@@ -13,7 +13,7 @@ class productForm(ModelForm):
 class productOffer(ModelForm):
     class Meta:
         model = product
-        fields = ('discount',)
+        fields = ('reference', 'name', 'price', 'description', 'cart', 'image', 'discount')
         exclude = ('user',)
 
 

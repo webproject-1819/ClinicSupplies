@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
@@ -54,6 +57,12 @@ def productos(request):
     context = {'datos': prod}
     return render(request, 'catalogue.html', context)
 
+def sales(request):
+
+    sales = product.objects.all()
+    context = {'sales': sales}
+    return render(request, 'sales.html', context)
+
 
 def producte_detail(request, reference):
     datos = get_object_or_404(product, pk=reference)
@@ -87,6 +96,8 @@ def create_prod(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('catalogue'))
+        else:
+            return HttpResponse('Ya existe un producto con esa referencia')
     else:
         form = productForm()
         context = {'form': form}
@@ -117,6 +128,7 @@ def product_edit(request, reference):
 
 def product_offer(request, reference):
     prod = get_object_or_404(product, reference=reference)
+
     if request.method == 'POST':
         form = productOffer(request.POST, instance=prod)
         if form.is_valid():
@@ -125,8 +137,66 @@ def product_offer(request, reference):
             prod.save()
             return redirect('catalogue')
     else:
+
         form = productOffer(instance=prod)
 
-        context = {'form': form,'prod': prod}
+
+        context = {'form': form , 'prod': prod}
         return render(request, "sale_create.html", context)
+
+def ingresar(request):
+    if not request.user.is_anonymous():
+        return HttpResponseRedirect('/privado')
+    if request.method == 'POST':
+        formulario = AuthenticationForm(request.POST)
+        if formulario.is_valid:
+            usuario = request.POST['username']
+            clave = request.POST['password']
+            acceso = authenticate(username=usuario, password=clave)
+            if acceso is not None:
+                if acceso.is_active:
+                    login(request, acceso)
+                    return HttpResponseRedirect('/privado')
+                else:
+                    return render(request, 'noactivo.html')
+            else:
+                return render(request, 'nousuario.html')
+    else:
+        formulario = AuthenticationForm()
+    context = {'formulario': formulario}
+    return render(request, 'ingresar.html', context)
+
+@login_required(login_url='/ingresar')
+def privado(request):
+    usuario = request.user
+    context = {'usuario': usuario}
+    return render(request, 'privado.html', context)
+
+
+
+
+@login_required(login_url='/ingresar')
+def cerrar(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
+def usuarios(request):
+    usuarios = User.objects.all()
+    recetas = review.objects.all()
+    context = {'recetas': recetas, 'usuarios':usuarios}
+    return render(request, 'reviews_usuarios.html', context)
+
+def usuario_nuevo(request):
+    if request.method=='POST':
+        formulario = UserCreationForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            return HttpResponseRedirect('/')
+    else:
+        formulario = UserCreationForm()
+    context = {'formulario': formulario}
+    return render(request, 'nuevousuario.html', context)
+
+
 
