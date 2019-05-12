@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e18f46ac-11bd-490e-be4b-044a517efee8" name="Default Changelist" comment="no pyc files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clinicsupplies/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/clinicsupplies/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drugshop/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/drugshop/migrations/0002_auto_20190511_1605.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/drugshop/migrations/0003_auto_20190511_1636.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/drugshop/migrations/0004_product_discount.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procfile" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,15 +29,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drugshop/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/clinicsupplies/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="197">
@@ -54,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="28" selection-start-column="28" selection-end-column="28" />
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -181,20 +167,10 @@
         <option value="$PROJECT_DIR$/drugshop/templates/ingresar.html" />
         <option value="$PROJECT_DIR$/clinicsupplies/settings_heroku.py" />
         <option value="$PROJECT_DIR$/drugshop/tests.py" />
-        <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/clinicsupplies/settings.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/ClinicSupplies.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+        <option value="$PROJECT_DIR$/procfile" />
+        <option value="$PROJECT_DIR$/Procfile" />
       </list>
     </option>
   </component>
@@ -216,27 +192,6 @@
             <path>
               <item name="ClinicSupplies" type="b2602c69:ProjectViewProjectNode" />
               <item name="ClinicSupplies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClinicSupplies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClinicSupplies" type="462c0819:PsiDirectoryNode" />
-              <item name="clinicsupplies" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClinicSupplies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClinicSupplies" type="462c0819:PsiDirectoryNode" />
-              <item name="drugshop" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClinicSupplies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClinicSupplies" type="462c0819:PsiDirectoryNode" />
-              <item name="drugshop" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClinicSupplies" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClinicSupplies" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -312,7 +267,7 @@
       <workItem from="1557417923298" duration="7218000" />
       <workItem from="1557474316658" duration="12423000" />
       <workItem from="1557570554115" duration="14525000" />
-      <workItem from="1557660823872" duration="14234000" />
+      <workItem from="1557660823872" duration="15553000" />
     </task>
     <task id="LOCAL-00001" summary="requirements">
       <created>1556612346567</created>
@@ -395,16 +350,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78716000" />
+    <option name="totallyTimeSpent" value="80035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19922523" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19922523" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4980631" weight="0.32937366" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4975097" weight="0.32937366" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4836746" weight="0.32937366" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -413,8 +369,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4986165" weight="0.32937366" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5163254" side_tool="true" visible="true" weight="0.3261339" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4836746" visible="true" weight="0.3261339" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5168788" side_tool="true" visible="true" weight="0.3261339" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4831212" visible="true" weight="0.3261339" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -672,13 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -693,6 +642,13 @@
           <folding>
             <element signature="e#319#328#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
