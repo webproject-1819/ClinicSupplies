@@ -8,8 +8,8 @@ from .views import *
 
 urlpatterns = [
 
-    url(r'^', home, name='home'),
-    url(r'^catalogue/$', views.productos, name='catalogue'),
+    url(r'^home/$', home, name='home'),
+    url(r'^$', views.productos, name='catalogue'),
     url(r'^producte/(?P<reference>[-\w]+)$', views.producte_detail, name='producte'),
     url(r'^sales/$', views.sales, name='sales'),
     url(r'^product_delete/(?P<pk>\d+)/delete/$', views.producte_delete, name='product_delete'),
