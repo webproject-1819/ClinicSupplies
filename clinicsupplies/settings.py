@@ -26,7 +26,7 @@ SECRET_KEY = 'j+9wbx8=uk+a#)55r4jf6bpoqr69ev^bk^+0ayntp-+b+3#t(('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['clinicsupplies.herokuapp.com/']
+ALLOWED_HOSTS = ['clinicsupplies.herokuapp.com','127.0.0.1']
 
 
 # Application definition
