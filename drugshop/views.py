@@ -61,16 +61,6 @@ def producte_detail(request, reference):
     context = {'datos': datos, 'comentarios': comentarios}
     return render(request, 'producte.html', context)
 
-
-def Register(request):
-    form = RegisterForm(request.POST or None, request.FILES, instance=coach_instance)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.user = request.user
-        form.save()
-    return render(request, 'Register.html', {'form': form})
-
-
 def create_review(request):
     try:
         review_instance = review.objects.get(user=request.user)
@@ -87,7 +77,7 @@ def create_review(request):
             return HttpResponse('Ya has comentado, no se permite comentar más de una vez')
     else:
         form = reviewForm()
-        context = {'form': form}
+        context = {'form': form,'review_instace': review_instance}
         return render(request, "review_create.html", context)
 
 
@@ -137,6 +127,6 @@ def product_offer(request, reference):
     else:
         form = productOffer(instance=prod)
 
-        context = {'form': form}
+        context = {'form': form,'prod': prod}
         return render(request, "sale_create.html", context)
 

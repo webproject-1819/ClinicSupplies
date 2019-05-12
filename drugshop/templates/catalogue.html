@@ -14,7 +14,7 @@
                         <h5>{{ dato.price }}€</h5>
                     </div>
                     <div>
-                        <a href='{% url  "product_offer" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">offer</button></a>
+                        <a href='{% url  'product_offer' reference=dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">offer</button></a>
                         <a href='{% url  "product_edit" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">edit</button></a>
                         <a href='{% url  "product_delete" dato.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">delete</button></a>
                     </div>
