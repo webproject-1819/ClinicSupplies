@@ -18,6 +18,12 @@ def home(request):
 
     # rendering the template in HttpResponse
     return HttpResponse(template.render())
+def api(request):
+    # getting our template
+    template = loader.get_template('information.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
 
 
 def catalogue(request):
@@ -145,7 +151,7 @@ def product_offer(request, reference):
         return render(request, "sale_create.html", context)
 
 def ingresar(request):
-    if not request.user.is_anonymous():
+    if not request.user.is_anonymous:
         return HttpResponseRedirect('/privado')
     if request.method == 'POST':
         formulario = AuthenticationForm(request.POST)
@@ -178,7 +184,7 @@ def privado(request):
 @login_required(login_url='/ingresar')
 def cerrar(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/home')
 
 
 def usuarios(request):
@@ -192,7 +198,7 @@ def usuario_nuevo(request):
         formulario = UserCreationForm(request.POST)
         if formulario.is_valid:
             formulario.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/home')
     else:
         formulario = UserCreationForm()
     context = {'formulario': formulario}
