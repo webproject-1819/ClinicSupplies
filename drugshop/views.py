@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
-from django.views.generic import DetailView, CreateView
 
-from drugshop.forms import productForm, stockForm
+from drugshop.forms import *
 from drugshop.models import *
 
 
@@ -51,58 +52,151 @@ def shopping_cart(request):
     return HttpResponse(template.render())
 
 
-class product_detail(DetailView):
-    model = product
-    template_name = '#TODO'
+def productos(request):
+    prod = product.objects.all()
+    context = {'datos': prod}
+    return render(request, 'catalogue.html', context)
 
-    def get_context_data(self, **kwargs):
-        context = super(product_detail, self).get_context_data(**kwargs)
-        context['RATING_CHOICES'] = product_review.RATING_CHOICES
-        return context
+def sales(request):
 
-
-class productCreate(CreateView):
-    ''' Create Movie, use template form.html '''
-    model = product
-    template_name = 'form.html'
-    form_class = productForm
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(productCreate, self).form_valid(form)
+    sales = product.objects.all()
+    context = {'sales': sales}
+    return render(request, 'sales.html', context)
 
 
-def productDelete(request, pk):
-    '''Movie delete'''
-    product1 = get_object_or_404(product, pk=pk)
-    product1.delete()
-    return HttpResponseRedirect(reverse('drugshop:product_list', ))
+def producte_detail(request, reference):
+    datos = get_object_or_404(product, pk=reference)
+    comentarios = review.objects.filter(product=datos)
+    context = {'datos': datos, 'comentarios': comentarios}
+    return render(request, 'producte.html', context)
+
+def create_review(request):
+    try:
+        review_instance = review.objects.get(user=request.user)
+    except review.DoesNotExist:
+        review_instance = review(user=request.user)
+    if request.method == 'POST':
+        form = reviewForm(request.POST or None, request.FILES, instance=review_instance)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            form.save()
+            return HttpResponseRedirect(reverse('catalogue'))
+        else:
+            return HttpResponse('Ya has comentado, no se permite comentar más de una vez')
+    else:
+        form = reviewForm()
+        context = {'form': form,'review_instace': review_instance}
+        return render(request, "review_create.html", context)
 
 
-class stockCreate(CreateView):
-    ''' Create Actor, use template form.html '''
-    model = stock
-    template_name = 'form.html'
-    form_class = stockForm
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(stockCreate, self).form_valid(form)
-
-
-def stockDelete(request, pk):
-    '''Actor delete'''
-    stock1 = get_object_or_404(stock, pk=pk)
-    stock1.delete()
-    return HttpResponseRedirect(reverse('drugshop:stock_list', ))
+def create_prod(request):
+    if request.method == 'POST':
+        form = productForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('catalogue'))
+        else:
+            return HttpResponse('Ya existe un producto con esa referencia')
+    else:
+        form = productForm()
+        context = {'form': form}
+        return render(request, "product_create.html", context)
 
 
-def reviewP(request, pk):
-    product1 = get_object_or_404(product, pk=pk)
-    reviews = product_review(
-        rating=request.POST['rating'],
-        comment=request.POST['comment'],
-        user=request.user,
-        product=product1)
-    reviews.save()
-    return HttpResponseRedirect(reverse('drugshop:product_detail', args=(product1.id,)))
+def producte_delete(request, pk):
+    prod = get_object_or_404(product, pk=pk)
+    prod.delete()
+    return HttpResponseRedirect(reverse('catalogue'))
+
+
+def product_edit(request, reference):
+    prod = get_object_or_404(product, reference=reference)
+    if request.method == 'POST':
+        form = productForm(request.POST, instance=prod)
+        if form.is_valid():
+            prod = form.save(commit=False)
+            prod.author = request.user
+            prod.save()
+            return redirect('catalogue')
+    else:
+        form = productForm(instance=prod)
+
+        context = {'form': form}
+        return render(request, "product_create.html", context)
+
+
+def product_offer(request, reference):
+    prod = get_object_or_404(product, reference=reference)
+
+    if request.method == 'POST':
+        form = productOffer(request.POST, instance=prod)
+        if form.is_valid():
+            prod = form.save(commit=False)
+            prod.author = request.user
+            prod.save()
+            return redirect('catalogue')
+    else:
+
+        form = productOffer(instance=prod)
+
+
+        context = {'form': form , 'prod': prod}
+        return render(request, "sale_create.html", context)
+
+def ingresar(request):
+    if not request.user.is_anonymous():
+        return HttpResponseRedirect('/privado')
+    if request.method == 'POST':
+        formulario = AuthenticationForm(request.POST)
+        if formulario.is_valid:
+            usuario = request.POST['username']
+            clave = request.POST['password']
+            acceso = authenticate(username=usuario, password=clave)
+            if acceso is not None:
+                if acceso.is_active:
+                    login(request, acceso)
+                    return HttpResponseRedirect('/privado')
+                else:
+                    return render(request, 'noactivo.html')
+            else:
+                return render(request, 'nousuario.html')
+    else:
+        formulario = AuthenticationForm()
+    context = {'formulario': formulario}
+    return render(request, 'ingresar.html', context)
+
+@login_required(login_url='/ingresar')
+def privado(request):
+    usuario = request.user
+    context = {'usuario': usuario}
+    return render(request, 'privado.html', context)
+
+
+
+
+@login_required(login_url='/ingresar')
+def cerrar(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
+def usuarios(request):
+    usuarios = User.objects.all()
+    recetas = review.objects.all()
+    context = {'recetas': recetas, 'usuarios':usuarios}
+    return render(request, 'reviews_usuarios.html', context)
+
+def usuario_nuevo(request):
+    if request.method=='POST':
+        formulario = UserCreationForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            return HttpResponseRedirect('/')
+    else:
+        formulario = UserCreationForm()
+    context = {'formulario': formulario}
+    return render(request, 'nuevousuario.html', context)
+
+
+

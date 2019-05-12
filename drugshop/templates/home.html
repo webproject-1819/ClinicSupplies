@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
     <title>Clinic Supplies</title>
@@ -14,31 +15,37 @@
     <body>
 
         <!--- Header --->
-        <div class="w3-hide-small w3-hide-medium w3-top" style="color:#ffffff!important; background-color:#36C1B2!important" >
+        <div class="w3-hide-small w3-hide-medium w3-top" style="height:20%; min-height: 100px; color:#ffffff!important; background-color:#36C1B2!important" >
             <div class="w3-container">
-                <h1 class="w3-padding-32"style="text-align: center"><b>Clinic Supplies</b></h1>
+                <a href= {% url 'home' %}><h1 class="w3-padding-32 w3-display-top"style="text-align: center"><b>Clinic Supplies</b></h1></a>
+                <style>
+                    a {
+                        text-decoration: none}
+                </style>
             </div>
 
-            <div class="w3-container w3-cell w3-display-topright"style="padding-right: 90px">
+            <div class="w3-container w3-cell w3-display-topright"style="right: 90px">
                 <h1 class="w3-padding-32"style="text-align: right"><img src="http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png" alt="User"style="width: 50px; height: 50px"></h1>
             </div>
-            <div class="w3-container w3-cell w3-display-topleft"style="padding-right: 90px">
-                <h1 class="w3-padding-32"style="text-align: right"><img src="drugshop/images/Logo.png" alt="Clinic Supplies"style="width: 50px; height: 50px"></h1>
+
+            <div class="w3-container w3-cell w3-display-topright"style="right: 10px">
+                <a href= {% url 'shopping_cart' %}><h1 class="w3-padding-32"style="text-align: right"><img src="https://image.flaticon.com/icons/png/512/107/107831.png" alt="Shopping Cart"style="width: 50px; height: 50px"></h1></a>
             </div>
-        </div>
+
+            <div class="w3-container w3-cell w3-display-topleft"style="left: 20px">
+                <a href= {% url 'home' %}><h1 class=""style="text-align: right"><img src="https://images.vexels.com/media/users/3/151914/isolated/lists/d1a135c6a2edced4f5f5c56a779f335b-icono-de-trazo-de-frasco-de-pildoras.png" alt="ClinicSupplies Logo"style="top: 25px; left: 0; width: 130px; height: 130px"></h1></a>
+            </div>
 
         </div>
 
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-collapse w3-large w3-display-bottomleft" style="z-index:3;width:240px;height: 85%;font-weight:bold;overflow:hidden;color:#ffffff!important; background-color:#36C1B2!important" id="mySidebar"><br>
+        <nav class="w3-sidebar w3-collapse w3-large w3-display-bottomleft" style="z-index:3;width:240px; top:20%; height:80%; font-weight:bold;overflow:hidden;color:#ffffff!important; background-color:#36C1B2!important" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"></a>
             <div class="w3-container">
-
-                <a href= '/catalogue'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Catalogue</b></h3></a>
-                <a href= '/sales'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Sales</b></h3></a>
-                <a href= '/cart'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Cart</b></h3></a>
-                <a href= '/information'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Information</b></h3></a>
-                <a href= '/logout'><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Logout</b></h3></a>
+                <a href= {% url 'catalogue' %}><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Catalogue</b></h3></a>
+                <a href= {% url 'sales' %}><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Sales</b></h3></a>
+                <a href= {% url 'information' %}><h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Information</b></h3></a>
+                <h3 class="w3-padding-16 w3-button w3-left-align"style="width: 240px"><b>Logout</b></h3>
             </div>
         </nav>
 
@@ -59,13 +66,19 @@
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-left:340px;margin-right:40px;margin-top: 15%">
 
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
             <!-- Header -->
             <div class="w3-container" id="showcase">
                 <h1 class="w3-jumbo">
 
+
                 </h1>
             </div>
-        </div>
         <script>
             // Script to open and close sidebar
             function w3_open() {
