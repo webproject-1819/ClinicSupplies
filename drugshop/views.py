@@ -18,6 +18,12 @@ def home(request):
 
     # rendering the template in HttpResponse
     return HttpResponse(template.render())
+def api(request):
+    # getting our template
+    template = loader.get_template('information.html')
+
+    # rendering the template in HttpResponse
+    return HttpResponse(template.render())
 
 
 def catalogue(request):
