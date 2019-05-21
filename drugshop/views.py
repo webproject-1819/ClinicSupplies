@@ -196,7 +196,7 @@ def usuarios(request):
 def usuario_nuevo(request):
     if request.method=='POST':
         formulario = UserCreationForm(request.POST)
-        if formulario.is_valid:
+        if formulario.is_valid():
             formulario.save()
             return HttpResponseRedirect('/home')
     else:
