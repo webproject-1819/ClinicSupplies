@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
 
-COPY Pipfile Pipfile.lock ./
+
 RUN pip install pipenv
 RUN pipenv install --system --deploy
 
