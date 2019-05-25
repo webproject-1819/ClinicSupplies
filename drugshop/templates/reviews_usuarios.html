@@ -8,7 +8,9 @@
 {% block contenido %}
 <ul>
 	{% for dato in usuarios %}
-	<li>{{dato.username|capfirst}} - <em>{{dato.email}}</em>
+  <div itemscope itemtype="https://schema.org/Person">
+	<li itemprop="additionalName">{{dato.username|capfirst}} - <em itemprop="email">{{dato.email}}</em>
+
 		<ul>
 			{% for item in recetas %}
 				{% if item.usuario == dato %}
@@ -19,6 +21,7 @@
 			{% endfor %}
 		</ul>
 	</li>
+  </div>
 	{% empty %}
 	<li>No hay usuarios registrados, aún.</li>
 	{% endfor %}
