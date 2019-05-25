@@ -20,7 +20,7 @@ class product(models.Model):
     buy = models.BooleanField(default=False)
 
     def averageRating(self):
-        reviewCount = self.product_review_set.count()
+        reviewCount = self.review.count()
         if not reviewCount:
             return 0
         else:

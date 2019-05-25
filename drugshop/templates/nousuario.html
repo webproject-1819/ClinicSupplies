@@ -1,8 +1,10 @@
 {% extends 'home.html' %}
 {% block titulo %}Error de acceso{% endblock %}
 {% block encabezado %}
-	<h1>Error de acceso</h1>
+    <div  vocab="http://schema.org/" typeof="Action"><h1 property="Error">Error de acceso</h1></div>
+
 {% endblock %}
 {% block contenido %}
-	<p>El usuario y la contraseña no coinciden o no existen.</p>
+    <div  vocab="http://schema.org/" typeof="Action"><p property="Error">El usuario y la contraseña no coinciden o no existen.</p></div>
+
 {% endblock %}

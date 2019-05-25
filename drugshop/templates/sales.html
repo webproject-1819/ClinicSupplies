@@ -3,23 +3,30 @@
 {% block content %}
 
     <h1>Sales</h1>
-        <ul>
-            {% for sale in  sales %}
-                {% if sale.discount != 0 %}
-                    <div>
-                        <a href='{% url "producte" sale.reference %}'>{{ sale.name }}</a>
-                    </div>
-                    <div>
-                        <a href='{% url "producte" sale.reference %}'><img src='{{ MEDIA_URL }}{{ sale.image }}'style="width: 150px; height: 150px"></a>
-                        <h5>{{ dato.price }}€</h5>
-                    </div>
-                    <div>
-                        <a href='{% url  "product_edit" sale.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">edit</button></a>
-                        <a href='{% url  "product_delete" sale.reference %}'><button class="w3-button w3-grey"style="height: 1cm; width: 2cm; margin-bottom: 3%">delete</button></a>
-                    </div>
-                {% endif %}
+    <ul>
+        {% for sale in  sales %}
+            {% if sale.discount != 0 %}
+                <div vocab="http://schema.org/" typeof="Product">
+                    <a property="name" href='{% url "producte" sale.reference %}'>{{ sale.name }}</a>
+                </div>
+                <div vocab="http://schema.org/" typeof="Product">
+                    <a property="name" property="productID" href='{% url "producte" sale.reference %}'><img
+                            property="image" src='{{ MEDIA_URL }}{{ sale.image }}' style="width: 150px; height: 150px"></a>
+                    <h5>{{ dato.price }}€</h5>
+                </div>
+                <div vocab="http://schema.org/" typeof="UpdateAction">
 
-            {% endfor %}
-        </ul>
+                    <a property="url" href='{% url  "product_edit" sale.reference %}'>
+                        <button class="w3-button w3-grey" style="height: 1cm; width: 2cm; margin-bottom: 3%">edit
+                        </button>
+                    </a>
+                    <a property="url" href='{% url  "product_delete" sale.reference %}'>
+                        <button class="w3-button w3-grey" style="height: 1cm; width: 2cm; margin-bottom: 3%">delete
+                        </button>
+                    </a>
+                </div>
+            {% endif %}
 
+        {% endfor %}
+    </ul>
 {% endblock %}
