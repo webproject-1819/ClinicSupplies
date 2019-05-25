@@ -3,7 +3,9 @@
 	<h1>Bienvenido</h1>
 {% endblock %}
 {% block contenido %}
-	<p>Bievenido {{usuario.username|upper}},
+   <div vocab="http://schema.org/" typeof="Thing">
+	<p property="name">Bievenido {{usuario.username|upper}},
 		la última vez que te vimos por aquí fue el {{usuario.last_login}}.</p>
 	<p>Eres miembro desde el {{usuario.date_joined}}</p>
+    </div>
 {% endblock %}
