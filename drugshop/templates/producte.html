@@ -2,32 +2,37 @@
 
 {% block content %}
     {% block titulo %}
-        <h1>{{ datos.name }}</h1>
+      <div itemscope itemtype="https://schema.org/Product">
+        <h1 itemprop="name">{{ datos.name }}</h1>
     {% endblock %}
 
     {% block contenido %}
         <div id='imatge'>
             <h2>Imatge</h2>
-            <img src='{{ MEDIA_URL }}{{ datos.image }}'>
+            <img src='{{ MEDIA_URL }}{{ datos.image }}' itemprop"image">
         </div>
         <div id='preu'>
             <h2>Preu</h2>
-            <p>{{ datos.price }}</p>
+            <p itemprop="price">{{ datos.price }}</p>
         </div>
-        <div id='imatge'>
+        <div id='description'>
             <h2>Descripció</h2>
-            <p>{{ datos.description }}</p>
+            <p itemprop="description">{{ datos.description }}</p>
         </div>
         <a href='{% url "review_create"%}'><button class="w3-button w3-grey"style="height: 1cm; width: 3cm; margin-bottom: 3%">Comment</button></a>
-        <div id='comentarios'>
+      </div>
+        <div id='comentarios' itemscope itemtype="https://schema.org/Review">
             <h2>Comentarios</h2>
             {% for item in comentarios %}
-                <p>{{ item.rating }}</p>
-                <p>{{ item.comment }}</p>
-                <p>{{ item.date }}</p>
+            <p type="hidden" itemprop="itemReviewed">{{ datos.name }}</p>
+            <p type="hidden" itemprop="author">{{ item.user }}</p>
+            <p itemprop="ratingValue">{{ item.rating }}</p>
+            <p itemprop="reviewBody">{{ item.comment }}</p>
+            <p itemprop="dateCreated">{{ item.date }}</p>
+            <p itemprop="reviewBody">Sin comentarios registrados</p>
 
             {% empty %}
-                <p>Sin comentarios registrados</p>
+                <p itemprop="reviewBody">Sin comentarios registrados</p>
             {% endfor %}
         </div>
         <footer>
@@ -35,5 +40,3 @@
         </footer>
     {% endblock %}
 {% endblock %}
-
-
