@@ -5,9 +5,13 @@
 {% block titulo %} 404 {% endblock %}
 
 {% block encabezado %}
-	<h1>Drugshop :( </h1>
+	<div itemscope itemtype="https://schema.org/Action">
+		<h1 itemprop="object">Drugshop :( </h1>
+	</div>
 {% endblock %}
 
 {% block contenido %}
-  <h1>Lo sentimos no encontramos lo que estas buscando :( </h1>
+	<div itemscope itemtype="https://schema.org/Action">
+  	<h1 itemprop="error">Lo sentimos no encontramos lo que estas buscando :( </h1>
+	</div>
 {% endblock %}

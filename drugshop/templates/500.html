@@ -8,13 +8,17 @@
 	<link rel='shortcut icon' href='http://127.0.0.1:90/img/icono.png'>
 {% endblock %}
 {% block encabezado %}
-	<h1>Recetario :( </h1>
+<div itemscope itemtype="https://schema.org/Action">
+	<h1 itemprop="object">Drugshop :( </h1>
+</div>
 {% endblock %}
 
 {% block contenido %}
-  <h1>Lo sentimos nuestro servidor se quedo dormido, hacemos todos los esfuerzos
-   por despertarlo. Un poquito de paciencia. </h1>
-  <p>
-  	<img src='http://127.0.0.1:90/static/img/leono.jpg'>
-  </p>
+	<div itemscope itemtype="https://schema.org/Action">
+  	<h1 itemprop="error">Lo sentimos nuestro servidor se quedo dormido, hacemos todos los esfuerzos
+   	por despertarlo. Un poquito de paciencia. </h1>
+  	<p>
+  		<img src='http://127.0.0.1:90/static/img/leono.jpg' itemprop="image">
+  	</p>
+	</div>
 {% endblock %}
