@@ -9,6 +9,11 @@ Contraseña: admin
 
 Implemented: All users can delete or modify instances without admin.
 Users can be added without admin.
+Api working.
+Heroku and Docker operative.
+
 Products are shown, and overall application is growing.
 
-Api unreachable, Heroku deployment unreachable.
+
+
+
