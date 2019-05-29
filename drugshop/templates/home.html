@@ -68,16 +68,26 @@
      id="mySidebar"><br>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft"></a>
     <div class="w3-container" vocab="http://schema.org/" typeof="Thing">
-        <a property="url" href= {% url 'catalogue' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Catalogue</b>
-        </h3></a>
-        <a property="url" href= {% url 'sales' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Sales</b>
-        </h3></a>
-        <a property="url" href= {% url 'information' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Information</b>
-        </h3></a>
-        <a property="url" href= {% url 'usuario_nuevo' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Sign
-            in</b></h3></a>
-        <a property="url" href= {% url 'cerrar' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Logout</b>
-        </h3>
+        <a property="url" href= {% url 'catalogue' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Catalogue</b></h3></a>
+        <a property="url" href= {% url 'sales' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Sales</b></h3></a>
+        <a property="url" href= {% url 'information' %}><h3 class="w3-padding-16 w3-button w3-left-align" style="width: 240px"><b>Information</b></h3></a>
+        {% if user.is_authenticated %}
+            <div style="width:240px; position:absolute; bottom:0">
+                <p class="w3-left-align" style="padding-left:16px">Hola, {{ user.username }}!</p>
+                <a href= {% url 'cerrar' %}>
+                    <h3 class="w3-button w3-left-align"><b>Logout</b></h3>
+                </a>
+            </div>
+        {% else %}
+            <div style="width:240px; position:absolute; bottom:0">
+                <a href= {% url 'ingresar' %}>
+                    <h3 class="w3-button w3-left-align" style="width: 240px"><b>Sign in</b></h3>
+                </a>
+                <a href= {% url 'usuario_nuevo' %}>
+                    <h3 class="w3-button w3-left-align" style="width: 240px"><b>Register</b></h3>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </nav>
 
