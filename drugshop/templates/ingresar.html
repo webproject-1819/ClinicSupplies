@@ -1,13 +1,13 @@
 {% extends 'home.html' %}
 {% block content %}
-    {% block titulo %}Ingresa al sistema{% endblock %}
-    {% block encabezado %}
-        <h1>Ingresa</h1>
+
+    <h1>Ingresa al sistema</h1>
+
+    <h2>Ingresa</h2>
+
+    <form id='formulario' method='post' action=''>{% csrf_token %}
+        <table>{{ formulario }}</table>
+        <p><input type='submit' value='Ingresar'/></p>
+    </form>
+
     {% endblock %}
-    {% block contenido %}
-        <form id='formulario' method='post' action=''>{% csrf_token %}
-            <table>{{ formulario }}</table>
-            <p><input type='submit' value='Ingresar'/></p>
-        </form>
-    {% endblock %}
-{% endblock %}

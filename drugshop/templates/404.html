@@ -1,17 +1,15 @@
 {% extends 'home.html' %}
 
-{% comment %} Aqui van comentarios {% endcomment %}
+{% block content %}
 
-{% block titulo %} 404 {% endblock %}
+    <h1>ERROR 404</h1>
 
-{% block encabezado %}
-	<div itemscope itemtype="https://schema.org/Action">
-		<h1 itemprop="object">Drugshop :( </h1>
-	</div>
-{% endblock %}
+    <div itemscope itemtype="https://schema.org/Action">
+        <h1 itemprop="object"> ClinicSupplies :( </h1>
+    </div>
 
-{% block contenido %}
-	<div itemscope itemtype="https://schema.org/Action">
-  	<h1 itemprop="error">Lo sentimos no encontramos lo que estas buscando :( </h1>
-	</div>
+    <div itemscope itemtype="https://schema.org/Action">
+        <h1 itemprop="error">Lo sentimos no encontramos lo que estas buscando :( </h1>
+    </div>
+
 {% endblock %}

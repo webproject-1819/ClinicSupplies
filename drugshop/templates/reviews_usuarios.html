@@ -1,30 +1,29 @@
 {% extends 'home.html' %}
 
 {% block content %}
+
     <h1>Usuarios registrados</h1>
 
     <h2>Colaboradores:</h2>
 
-    {% block contenido %}
     <ul>
         {% for dato in usuarios %}
-      <div itemscope itemtype="https://schema.org/Person">
-        <li itemprop="additionalName">{{dato.username|capfirst}} - <em itemprop="email">{{dato.email}}</em>
-
-            <ul>
-                {% for item in recetas %}
-                    {% if item.usuario == dato %}
-                        <li>{{item}}</li>
-                    {% endif %}
-                {% empty %}
-                    <li>Este usuario aún no ha registrado nada.</li>
-                {% endfor %}
-            </ul>
-        </li>
-      </div>
-        {% empty %}
-        <li>No hay usuarios registrados, aún.</li>
+            <div itemscope itemtype="https://schema.org/Person">
+                <li itemprop="additionalName">{{dato.username|capfirst}} - <em itemprop="email">{{dato.email}}</em>
+                    <ul>
+                        {% for item in recetas %}
+                            {% if item.usuario == dato %}
+                                <li>{{item}}</li>
+                            {% endif %}
+                            {% empty %}
+                                <li>Este usuario aún no ha registrado nada.</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </div>
+            {% empty %}
+                <li>No hay usuarios registrados, aún.</li>
         {% endfor %}
     </ul>
-    {% endblock %}
+
 {% endblock %}

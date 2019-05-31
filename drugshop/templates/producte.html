@@ -1,42 +1,46 @@
 {% extends 'home.html' %}
 
 {% block content %}
-    {% block titulo %}
-      <div itemscope itemtype="https://schema.org/Product">
-        <h1 itemprop="name">{{ datos.name }}</h1>
-    {% endblock %}
 
-    {% block contenido %}
-        <div id='imatge'>
-            <h2>Imatge</h2>
-            <img src='{{ MEDIA_URL }}{{ datos.image }}' itemprop"image">
-        </div>
-        <div id='preu'>
-            <h2>Preu</h2>
-            <p itemprop="price">{{ datos.price }}</p>
-        </div>
-        <div id='description'>
-            <h2>Descripció</h2>
-            <p itemprop="description">{{ datos.description }}</p>
-        </div>
+    <div itemscope itemtype="https://schema.org/Product">
+        <h1 itemprop="name">{{ datos.name }}</h1>
+    </div>
+
+    <div id='imatge'>
+        <h2>Imatge</h2>
+        <img src='{{ MEDIA_URL }}{{ datos.image }}' itemprop"image">
+    </div>
+
+    <div id='preu'>
+        <h2>Preu</h2>
+        <p itemprop="price">{{ datos.price }}</p>
+    </div>
+
+    <div id='description'>
+        <h2>Descripció</h2>
+        <p itemprop="description">{{ datos.description }}</p>
+    </div>
+
+    <div>
         <a href='{% url "review_create"%}'><button class="w3-button w3-grey"style="height: 1cm; width: 3cm; margin-bottom: 3%">Comment</button></a>
-      </div>
-        <div id='comentarios' itemscope itemtype="https://schema.org/Review">
-            <h2>Comentarios</h2>
-            {% for item in comentarios %}
+    </div>
+
+    <div id='comentarios' itemscope itemtype="https://schema.org/Review">
+        <h2>Comentarios</h2>
+        {% for item in comentarios %}
             <p type="hidden" itemprop="itemReviewed">{{ datos.name }}</p>
             <p type="hidden" itemprop="author">{{ item.user }}</p>
             <p itemprop="ratingValue">{{ item.rating }}</p>
             <p itemprop="reviewBody">{{ item.comment }}</p>
             <p itemprop="dateCreated">{{ item.date }}</p>
             <p itemprop="reviewBody">Sin comentarios registrados</p>
-
             {% empty %}
                 <p itemprop="reviewBody">Sin comentarios registrados</p>
-            {% endfor %}
-        </div>
-        <footer>
-            <p>Registrado {{ product.register_time|date:'SHORT_DATETIME_FORMAT' }} por {{ product.cart }}</p>
-        </footer>
-    {% endblock %}
+        {% endfor %}
+    </div>
+
+    <footer>
+        <p>Registrado {{ product.register_time|date:'SHORT_DATETIME_FORMAT' }} por {{ product.cart }}</p>
+    </footer>
+
 {% endblock %}

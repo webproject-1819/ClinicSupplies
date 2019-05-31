@@ -1,13 +1,11 @@
 {% extends 'home.html' %}
 
-{% block titulo %}Bienvenido{% endblock %}
-{% block encabezado %}
-	<h1>Bienvenido</h1>
-{% endblock %}
 {% block content %}
-   <div vocab="http://schema.org/" typeof="Thing">
-	<h3 property="name">Bievenido, <b>{{usuario.username|title}}</b>!</h3>
-	<p>La última vez que te vimos por aquí fue el {{usuario.last_login}}.</p>
-	<p>Eres miembro desde el {{usuario.date_joined}}</p>
+
+    <div vocab="http://schema.org/" typeof="Thing">
+        <h1 property="name">Bievenido, <b>{{usuario.username|title}}</b>!</h1>
+        <p>La última vez que te vimos por aquí fue el {{usuario.last_login}}.</p>
+        <p>Eres miembro desde el {{usuario.date_joined}}</p>
     </div>
+
 {% endblock %}

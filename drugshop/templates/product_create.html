@@ -2,13 +2,9 @@
 
 {% block content %}
 
-    {% block encabezado %}
-        <h1>Create new product</h1>
-    {% endblock %}
+    <h1>Create new product</h1>
 
-
-    {% block contenido %}
-        <div vocab="http://schema.org/" typeof="RegisterAction">
+    <div vocab="http://schema.org/" typeof="RegisterAction">
         <form property="object" id='form' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
               <style type="text/css">
                   form {
@@ -30,6 +26,6 @@
             {{form.as_p}}
             <p><input type='submit' value='Registrar'/></p>
         </form>
-        </div>
-    {% endblock %}
+    </div>
+
 {% endblock %}

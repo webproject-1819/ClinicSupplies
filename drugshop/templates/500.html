@@ -1,24 +1,22 @@
 {% extends 'home.html' %}
 
-{% comment %} Aqui van comentarios {% endcomment %}
+{% block content %}
 
-{% block titulo %} 500 {% endblock %}
-{% block style_css %}
-	<link href='http://127.0.0.1:90/static/css/base.css' rel='stylesheet'>
-	<link rel='shortcut icon' href='http://127.0.0.1:90/img/icono.png'>
-{% endblock %}
-{% block encabezado %}
-<div itemscope itemtype="https://schema.org/Action">
-	<h1 itemprop="object">Drugshop :( </h1>
-</div>
-{% endblock %}
+    <h1>ERROR 500</h1>
 
-{% block contenido %}
-	<div itemscope itemtype="https://schema.org/Action">
-  	<h1 itemprop="error">Lo sentimos nuestro servidor se quedo dormido, hacemos todos los esfuerzos
-   	por despertarlo. Un poquito de paciencia. </h1>
-  	<p>
-  		<img src='http://127.0.0.1:90/static/img/leono.jpg' itemprop="image">
-  	</p>
-	</div>
+    <link href='http://127.0.0.1:90/static/css/base.css' rel='stylesheet'>
+    <link rel='shortcut icon' href='http://127.0.0.1:90/img/icono.png'>
+
+    <div itemscope itemtype="https://schema.org/Action">
+        <h2 itemprop="object"> ClinicSupplies :( </h2>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Action">
+    <h2 itemprop="error">Lo sentimos nuestro servidor se quedo dormido, hacemos todos los esfuerzos por despertarlo.
+                         Un poquito de paciencia. </h2>
+        <p>
+            <img src='http://127.0.0.1:90/static/img/leono.jpg' itemprop="image">
+        </p>
+        </div>
+
 {% endblock %}

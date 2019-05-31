@@ -1,10 +1,11 @@
 {% extends 'home.html' %}
-{% block titulo %}Usuario desactivado{% endblock %}
-{% block encabezado %}
+
+{% block content %}
+
+    <h1>Usuario desactivado</h1>
+
     <div vocab="http://schema.org/" typeof="Action"><h1 property="error">El usuario no esta activo</h1></div>
 
-{% endblock %}
-{% block contenido %}
-    <div vocab="http://schema.org/" typeof="Action"><p property="error" >Contactarse con el administrador, para resolver el problema.</p></div>
+    <div vocab="http://schema.org/" typeof="Action"><p property="error" >Contactar con el administrador para resolver el problema.</p></div>
 
 {% endblock %}

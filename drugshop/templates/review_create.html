@@ -2,34 +2,30 @@
 
 {% block content %}
 
-    {% block encabezado %}
-        <h1>Create new review</h1>
-    {% endblock %}
+    <h1>Create new review</h1>
 
-
-    {% block contenido %}
-          <div vocab="http://schema.org/" typeof="RegisterAction">
+    <div vocab="http://schema.org/" typeof="RegisterAction">
         <form property="object" id='form2' method='post' enctype='multipart/form-data' action=''>{% csrf_token %}
-              <style type="text/css">
-                  form {
-                      right: 10%;
-                      left: 10%;
-                      text-indent: 4%;
-                      text-align: left;
+            <style type="text/css">
+                form {
+                    right: 10%;
+                    left: 10%;
+                    text-indent: 4%;
+                    text-align: left;
 
-                      color: black;
-                      background-color: lavender;
-                  }
+                    color: black;
+                    background-color: lavender;
+                }
 
-                  input, textarea, select {
-                      margin: 2%;
+                input, textarea, select {
+                    margin: 2%;
 
-                  }
+                }
 
-              </style>
+            </style>
             {{form.as_p}}
             <p><input type='submit' value='Registrar'/></p>
         </form>
-         </div>
-    {% endblock %}
+    </div>
+
 {% endblock %}

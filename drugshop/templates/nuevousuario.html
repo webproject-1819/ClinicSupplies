@@ -1,15 +1,14 @@
 {% extends 'home.html' %}
+
 {% block content %}
-    {% block encabezado %}
-        <h1>Registra un nuevo usuario</h1>
-    {% endblock %}
-    {% block contenido %}
-        <div vocab="http://schema.org/" typeof="RegisterAction">
+
+    <h1>Registra un nuevo usuario</h1>
+    <div vocab="http://schema.org/" typeof="RegisterAction">
         <form property="object" id='formulario' method='post' action=''>{% csrf_token %}
             <table>{{formulario}}</table>
             <p><input type='submit' value='Registrar'/></p>
         </form>
-        </div>
-    {% endblock %}
+    </div>
+
 {% endblock %}
 
