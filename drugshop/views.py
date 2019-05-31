@@ -53,12 +53,10 @@ def information(request):
 
 
 def shopping_cart(request):
-    # getting our template
-    template = loader.get_template('shopping_cart.html')
-
-    # rendering the template in HttpResponse
-    return HttpResponse(template.render())
-
+    usuarios = User.objects.all()
+    prod = product.objects.all()
+    context = {'datos': prod, 'usuarios': usuarios}
+    return render(request, 'shopping_cart.html', context)
 
 def productos(request):
     prod = product.objects.all()
