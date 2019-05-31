@@ -12,7 +12,7 @@
                 <div vocab="http://schema.org/" typeof="Product">
                     <a property="name" property="productID" href='{% url "producte" sale.reference %}'><img
                             property="image" src='{{ MEDIA_URL }}{{ sale.image }}' style="width: 150px; height: 150px"></a>
-                    <h5>{{ dato.price }}€</h5>
+                    <h5>{{ sale.price}}€</h5>
                 </div>
                 <div vocab="http://schema.org/" typeof="UpdateAction">
 
