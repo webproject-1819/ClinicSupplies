@@ -19,6 +19,10 @@ class product(models.Model):
     register_time = models.DateTimeField(auto_now=True)
     buy = models.BooleanField(default=False)
 
+    def discountPrice(self):
+        self.price = self.price * (100 - self.discount) / 100
+        self.save()
+
     def averageRating(self):
         reviewCount = self.review.count()
         if not reviewCount:
@@ -35,7 +39,7 @@ class product(models.Model):
 
 
 class stock(models.Model):
-    key = models.OneToOneField(product, on_delete=models.CASCADE,default="")
+    key = models.OneToOneField(product, on_delete=models.CASCADE, default="")
     quantitiy = models.IntegerField(null=True)
 
     def __str__(self):
@@ -57,4 +61,3 @@ class review(models.Model):
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name + " " + self.product.name + " " + str(self.date)
-

@@ -18,6 +18,8 @@ def home(request):
 
     # rendering the template in HttpResponse
     return HttpResponse(template.render())
+
+
 def api(request):
     # getting our template
     template = loader.get_template('information.html')
@@ -63,8 +65,8 @@ def productos(request):
     context = {'datos': prod}
     return render(request, 'catalogue.html', context)
 
-def sales(request):
 
+def sales(request):
     sales = product.objects.all()
     context = {'sales': sales}
     return render(request, 'sales.html', context)
@@ -75,6 +77,7 @@ def producte_detail(request, reference):
     comentarios = review.objects.filter(product=datos)
     context = {'datos': datos, 'comentarios': comentarios}
     return render(request, 'producte.html', context)
+
 
 def create_review(request):
     try:
@@ -92,7 +95,7 @@ def create_review(request):
             return HttpResponse('Ya has comentado, no se permite comentar más de una vez')
     else:
         form = reviewForm()
-        context = {'form': form,'review_instace': review_instance}
+        context = {'form': form, 'review_instace': review_instance}
         return render(request, "review_create.html", context)
 
 
@@ -138,6 +141,7 @@ def product_offer(request, reference):
     if request.method == 'POST':
         form = productOffer(request.POST, instance=prod)
         if form.is_valid():
+            prod.discountPrice()
             prod = form.save(commit=False)
             prod.author = request.user
             prod.save()
@@ -146,9 +150,9 @@ def product_offer(request, reference):
 
         form = productOffer(instance=prod)
 
-
-        context = {'form': form , 'prod': prod}
+        context = {'form': form, 'prod': prod}
         return render(request, "sale_create.html", context)
+
 
 def ingresar(request):
     if not request.user.is_anonymous:
@@ -172,13 +176,12 @@ def ingresar(request):
     context = {'formulario': formulario}
     return render(request, 'ingresar.html', context)
 
+
 @login_required(login_url='/ingresar')
 def privado(request):
     usuario = request.user
     context = {'usuario': usuario}
     return render(request, 'privado.html', context)
-
-
 
 
 @login_required(login_url='/ingresar')
@@ -190,11 +193,12 @@ def cerrar(request):
 def usuarios(request):
     usuarios = User.objects.all()
     recetas = review.objects.all()
-    context = {'recetas': recetas, 'usuarios':usuarios}
+    context = {'recetas': recetas, 'usuarios': usuarios}
     return render(request, 'reviews_usuarios.html', context)
 
+
 def usuario_nuevo(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = UserCreationForm(request.POST)
         if formulario.is_valid():
             formulario.save()
@@ -203,6 +207,3 @@ def usuario_nuevo(request):
         formulario = UserCreationForm()
     context = {'formulario': formulario}
     return render(request, 'nuevousuario.html', context)
-
-
-
